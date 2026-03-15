@@ -1,4 +1,7 @@
-flask
 torch
 torchvision
+flask
+flask-cors
+numpy
 pillow
+opencv-python
