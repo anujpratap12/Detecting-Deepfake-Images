@@ -25,7 +25,19 @@ The system performs the following tasks:
 * HTML + TailwindCSS
 * NumPy
 * Pillow
+## Installation
 
+Clone the repository
+
+git clone https://github.com/anujpratap12/Detecting-Deepfake
+
+Navigate to the project folder
+
+cd Detecting-Deepfake
+
+Install dependencies
+
+pip install -r requirements.txt
 ---
 
 ## Model Architecture
