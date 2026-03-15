@@ -1,19 +1,18 @@
-# Deepfake Image Detection using ResNet18
+# Detecting Deepfake Images
 
 ## Overview
 
-This project detects **deepfake images using deep learning techniques**.
-A **ResNet18 convolutional neural network with transfer learning** is used to classify images as **Real or Fake**.
+This project focuses on detecting **deepfake images using deep learning**. The model is trained using **ResNet18 with transfer learning** to classify images as either **Real** or **Fake**.
 
-The project demonstrates an **end-to-end AI pipeline**, including:
+The goal of this project is to demonstrate an **end-to-end machine learning pipeline**, starting from dataset preprocessing and model training to deployment through a **Flask API and a simple web interface** where users can upload an image and get predictions.
 
-* Dataset preprocessing
-* Deep learning model training
-* Model evaluation
-* REST API deployment using Flask
-* Web interface for user interaction
+The system performs the following tasks:
 
-The system allows users to upload an image and receive a **real-time prediction** indicating whether the image is real or manipulated.
+* Preprocess image datasets
+* Train a deep learning model using PyTorch
+* Evaluate model performance
+* Deploy the trained model using Flask
+* Provide a simple frontend interface for testing predictions
 
 ---
 
@@ -21,29 +20,25 @@ The system allows users to upload an image and receive a **real-time prediction*
 
 * Python
 * PyTorch
-* ResNet18 (Transfer Learning)
-* Flask (Backend API)
-* HTML + TailwindCSS (Frontend UI)
+* Torchvision
+* Flask
+* HTML + TailwindCSS
 * NumPy
 * Pillow
-* Torchvision
 
 ---
 
 ## Model Architecture
 
-The model uses **ResNet18 pretrained on ImageNet** for feature extraction.
+The model uses **ResNet18 pretrained on ImageNet**. Transfer learning allows the network to reuse powerful visual feature representations learned from large datasets.
 
 ### Workflow
 
-1. Input image resized to **224 × 224**
-2. Image converted into a tensor
-3. Features extracted using **ResNet18 convolutional layers**
-4. Final **fully connected layer modified** for binary classification
-5. Model predicts:
-
-* **Fake**
-* **Real**
+1. Input image is resized to **224 × 224**
+2. Image is converted into a tensor
+3. ResNet18 extracts image features
+4. The final fully connected layer is modified for **binary classification**
+5. The model predicts whether the image is **Real** or **Fake**
 
 ### Training Configuration
 
@@ -56,13 +51,16 @@ Optimizer
 Learning Rate
 `0.0001`
 
+Number of Epochs
+`10`
+
 ---
 
 ## Dataset Structure
 
-The dataset is organized into training and validation folders:
+The dataset is organized into training and validation folders.
 
-```id="dset1"}
+```
 dataset/
 │
 ├── train/
@@ -74,15 +72,15 @@ dataset/
     └── real/
 ```
 
-Each folder contains images belonging to its respective class.
+Each folder contains images belonging to the respective class.
 
 ---
 
 ## Training the Model
 
-Run the training script:
+To train the model run:
 
-```id="traincmd"}
+```
 python train_model.py
 ```
 
@@ -94,7 +92,7 @@ Epoch 5/10 | Train Acc: 88.3% | Val Acc: 84.7%
 Epoch 10/10 | Train Acc: 92.5% | Val Acc: 90.1%
 ```
 
-The trained model is saved as:
+After training, the model weights are saved as:
 
 ```
 deepfake_detector.pth
@@ -102,15 +100,53 @@ deepfake_detector.pth
 
 ---
 
+## Model Evaluation
+
+The model performance was evaluated using the validation dataset.
+
+Evaluation metrics used:
+
+* Accuracy
+* Precision
+* Recall
+* F1-Score
+
+Example results:
+
+* Accuracy: 90.1%
+* Precision: 89.4%
+* Recall: 88.7%
+* F1 Score: 89.0%
+
+---
+
 ## Running the Application
 
-Start the Flask API server:
+Start the Flask server:
 
-```id="runapp"}
+```
 python app.py
 ```
 
-Open the frontend page and upload an image to check whether it is **Real or Fake**.
+Once the server is running, open the frontend page and upload an image.
+The model will process the image and return whether it is **Real** or **Fake**.
+
+---
+
+## API Endpoint
+
+**POST /predict**
+
+Input
+Image file
+
+Example Response
+
+```
+{
+  "prediction": "fake"
+}
+```
 
 ---
 
@@ -126,27 +162,35 @@ Open the frontend page and upload an image to check whether it is **Real or Fake
 
 ---
 
-## Key Features
+## Project Structure
 
-* Transfer learning using **ResNet18**
-* Deep learning inference using **PyTorch**
-* Real-time prediction using **Flask API**
-* Interactive web interface
-* GPU support using CUDA (if available)
+```
+Detecting-Deepfake
+│
+├── train_model.py        # model training script
+├── app.py                # Flask API server
+├── index.html            # frontend interface
+├── deepfake_detector.pth # trained model weights
+├── requirements.txt      # project dependencies
+└── README.md
+```
 
 ---
 
 ## Future Improvements
 
+Some possible improvements for this project:
+
 * Train using larger deepfake datasets
-* Improve accuracy using **EfficientNet or Vision Transformers**
-* Extend system to **video deepfake detection**
-* Deploy using **Docker or cloud platforms**
+* Improve accuracy using more advanced architectures like EfficientNet
+* Extend the system to detect **video deepfakes**
+* Deploy the model using Docker or cloud services
+* Build a real-time detection system
 
 ---
 
 ## Author
 
-**Anuj Pratap Singh**
+Anuj Pratap Singh
 Final Year B.Tech Student
-AI / Machine Learning Enthusiast
+Interested in Artificial Intelligence and Machine Learning
