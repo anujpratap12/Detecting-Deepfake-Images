@@ -1,100 +1,83 @@
-# Deepfake Video Detection using ResNeXt and LSTM
+# Deepfake Image Detection using ResNet18
 
 ## Overview
 
-This project focuses on detecting deepfake videos using deep learning techniques. It combines a **pre-trained ResNeXt Convolutional Neural Network (CNN)** for spatial feature extraction and an **LSTM network** for temporal sequence learning across video frames.
+This project detects **deepfake images using deep learning**.
+The system uses a **ResNet18 convolutional neural network with transfer learning** to classify images as **Real or Fake**.
 
-The goal is to accurately classify whether a video is **real or manipulated (deepfake)**.
+The project demonstrates an **end-to-end AI application pipeline** including:
 
----
-
-## Key Features
-
-* Deepfake detection from video input
-* Transfer learning using **ResNeXt**
-* Temporal sequence modeling using **LSTM**
-* Feature extraction from video frames
-* Deep learning inference using PyTorch
-* Simple web interface for prediction
+* Model training
+* Dataset preprocessing
+* Deep learning inference
+* REST API deployment
+* Web interface for prediction
 
 ---
 
 ## Tech Stack
 
-* Python
-* PyTorch
-* OpenCV
-* NumPy
-* Flask
-* HTML
+Python
+PyTorch
+ResNet18 (Transfer Learning)
+Flask
+HTML + TailwindCSS
+NumPy
+Pillow
 
 ---
 
 ## Model Architecture
 
-1. Extract frames from input video.
-2. Use **ResNeXt CNN** to extract spatial features from each frame.
-3. Feed the extracted features into an **LSTM network**.
-4. LSTM captures temporal patterns between frames.
-5. Final classification layer predicts **Real or Deepfake**.
+The model uses **ResNet18 pretrained on ImageNet**.
 
-Pipeline:
+Steps:
 
-Video → Frame Extraction → ResNeXt Feature Extraction → LSTM Sequence Learning → Classification
+1. Input image resized to **224×224**
+2. Image converted to tensor
+3. Features extracted using **ResNet18 CNN layers**
+4. Final fully connected layer modified for **binary classification**
+5. Output classes:
 
----
+   * Fake
+   * Real
 
-## Dataset
+Loss Function:
 
-The model was trained using publicly available deepfake datasets such as:
+CrossEntropyLoss
 
-* FaceForensics++
-* Deepfake Detection Challenge (DFDC)
+Optimizer:
 
----
-
-## Results
-
-* Achieved high classification accuracy on validation data.
-* Demonstrated ability to detect manipulated video frames using learned temporal patterns.
+Adam Optimizer (learning rate = 0.0001)
 
 ---
 
-## How to Run the Project
+## Dataset Structure
 
-1. Clone the repository
+dataset/
 
-```
-git clone https://github.com/anujpratap12/Detecting-Deepfake.git
-cd Detecting-Deepfake
-```
+train/
+ fake/
+ real/
 
-2. Install dependencies
+valid/
+ fake/
+ real/
 
-```
-pip install -r requirements.txt
-```
-
-3. Run the application
-
-```
-python app.py
-```
-
-4. Upload a video and the model will classify it as **Real or Deepfake**.
+Images are stored according to their class labels.
 
 ---
 
-## Future Improvements
+## Training
 
-* Improve model accuracy with larger datasets
-* Real-time deepfake detection
-* Deploy model as an API
-* Optimize model for faster inference
+Run the training script:
 
----
+```bash
+python train_model.py
+```
 
-## Author
+Example training output:
 
-Anuj Pratap Singh
-AI/ML Engineer | Computer Vision | Deep Learning
+Epoch 1/10 | Train Acc: 76.2% | Val Acc: 72.4%
+Epoch 5/10 | Train Acc: 88.3% | Val Acc: 84.7%
+E
