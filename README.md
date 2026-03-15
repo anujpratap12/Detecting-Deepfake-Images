@@ -1,4 +1,4 @@
-# Deepfake Image Detection using ResNet18
+# Detecting Deepfake Images
 
 ## Overview
 
