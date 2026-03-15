@@ -80,4 +80,13 @@ Example training output:
 
 Epoch 1/10 | Train Acc: 76.2% | Val Acc: 72.4%
 Epoch 5/10 | Train Acc: 88.3% | Val Acc: 84.7%
-E
+
+## Application Demo
+
+### Real Image Detection
+
+![Real Prediction](real_prediction.png)
+
+### Fake Image Detection
+
+![Fake Prediction](fake_prediction.png)
