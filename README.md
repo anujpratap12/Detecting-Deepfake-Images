@@ -166,11 +166,11 @@ Example Response
 
 ### Real Image Detection
 
-![Real Prediction](real_prediction.png)
+![Real Prediction](real_prediction.jpeg)
 
 ### Fake Image Detection
 
-![Fake Prediction](fake_prediction.png)
+![Fake Prediction](fake_prediction.jpeg)
 
 ---
 
